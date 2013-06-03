@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Comment board</title>
+    <meta charset="UTF-8"/>
+  </head>
+  <body>
+  <h1>Comment board</h1>
+  <form action="/comment" method="POST" enctype="multipart/form-data">
+    <fieldset>
+      <legend>Please comment!</legend>
+      <p>
+        <label>name: </label>
+        <input type="text" name="user_name" />
+      </p>
+      <p>
+        <label>comment: </label>
+        <input type="text" name="comment" />
+      </p>
+      <input type="submit" name="comment_button" value="comment" />
+      </fieldset>
+  </form>
+  <table style="margin-top: 20px;">
+    <caption>Comments</caption>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>comment</th>
+        <th>created_at</th>
+      </tr>
+    </thead>
+    <tbody>
+      %for r in rows:
+      <tr>
+        <td>{{r['comment_id']}}</td>
+        <td>{{r['user_name']}}</td>
+        <td>{{r['body']}}</td>
+        <td>{{r['created_at']}}</td>
+      </tr>
+      %end
+    </tbody>
+  </table>
+  </body>
+</html>
