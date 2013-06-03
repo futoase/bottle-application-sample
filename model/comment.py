@@ -4,8 +4,9 @@ from datetime import datetime
 from database import Database, transaction, select
 
 class Comment(Database):
-  def __init__(self):
-    pass
+  def __init__(self, **kwargs):
+    for key in kwargs:
+      self.__dict__[key] = kwargs[key]
   
   @staticmethod
   def add(user_name, comment):
@@ -31,6 +32,8 @@ class Comment(Database):
         SELECT * FROM `comments` 
           ORDER BY `comment_id` DESC
       ''')
-      results = Database.moulding_dataset()
+      records = Database.moulding_dataset()
+      for record in records:
+        results.append(Comment(**record)) 
 
     return results
